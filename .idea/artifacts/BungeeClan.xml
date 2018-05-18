@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BungeeClan">
+    <output-path>$USER_HOME$/Spigot</output-path>
+    <root id="archive" name="BungeeClan.jar">
+      <element id="module-output" name="BungeeCord" />
+      <element id="module-output" name="ClanLibraries" />
+    </root>
+  </artifact>
+</component>

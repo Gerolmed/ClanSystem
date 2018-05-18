@@ -40,6 +40,9 @@ public class Clan {
      */
     @BungeeSided
     public Clan(String shortName, String name) {
+        invites = new ArrayList<>();
+        users = new ArrayList<>();
+
         this.name = name;
         this.shortName = shortName;
     }

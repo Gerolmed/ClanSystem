@@ -2,5 +2,5 @@ MySQL:
   username: username
   password: password
   database: clandatabase
-  port: 3307
+  port: 3306
   host: localhost

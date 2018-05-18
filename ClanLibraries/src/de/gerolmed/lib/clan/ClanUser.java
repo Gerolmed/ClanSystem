@@ -17,6 +17,8 @@ public class ClanUser {
     private ClanRank rank;
 
     public ClanUser(UUID uuid) {
+        if(uuid == null)
+            throw new NullPointerException();
         this.uuid = uuid;
     }
 

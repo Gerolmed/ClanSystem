@@ -217,7 +217,7 @@ public class ClanCommand extends Command {
             //Kick Command
             if(label.equalsIgnoreCase("kick"))
             {
-                if(user.getRank().canPromote())
+                if(user.getRank().canKick())
                 {
                     if(args.length != 2)
                     {
@@ -244,7 +244,7 @@ public class ClanCommand extends Command {
                         sendMessage(proxiedPlayer, "§7[§6Clan§7] §cDieser Spieler ist nicht in diesem Clan");
                         return;
                     }
-                    if(user.getRank().canPromote(target.getRank())) {
+                    if(user.getRank().canKick(target.getRank())) {
                         try {
                             boolean result = true;
 
@@ -485,7 +485,7 @@ public class ClanCommand extends Command {
 
         ProxiedPlayer player = ProxyServer.getInstance().getPlayer(user.getUUID());
         if(player == null) {
-            return "§cerror";
+            return user.getNameString();
         }
         return player.getDisplayName();
 

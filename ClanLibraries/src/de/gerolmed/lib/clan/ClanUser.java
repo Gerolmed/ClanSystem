@@ -15,11 +15,13 @@ public class ClanUser {
     private UUID uuid;
     private Clan clan;
     private ClanRank rank;
+    private String nameString;
 
-    public ClanUser(UUID uuid) {
+    public ClanUser(UUID uuid, String nameString) {
         if(uuid == null)
             throw new NullPointerException();
         this.uuid = uuid;
+        this.nameString = nameString;
     }
 
     private ClanUser(UUID uuid, ClanRank rank, Clan clan) {
@@ -92,5 +94,10 @@ public class ClanUser {
         } catch (Exception ex) {}
 
         return new ClanUser(uuid, clanRank, clan);
+    }
+
+    @BungeeSided
+    public String getNameString() {
+        return nameString;
     }
 }

@@ -29,7 +29,7 @@ public class JoinLeaveListener implements Listener {
     public void connect(PostLoginEvent event) {
         ProxiedPlayer player = event.getPlayer();
 
-        ClanUserManager.getInstance().addUserNoReplace(new ClanUser(player.getUniqueId()));
+        ClanUserManager.getInstance().addUserNoReplace(new ClanUser(player.getUniqueId(), player.getDisplayName()));
         //sendUpdate(player);
 
     }

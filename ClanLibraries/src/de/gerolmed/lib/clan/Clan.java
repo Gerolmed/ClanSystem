@@ -55,7 +55,7 @@ public class Clan {
     @BungeeSided
     public void addUser(ClanUser user) {
         user.setClan(this);
-        user.setRank(ClanRank.USER);
+        user.setRank(ClanRank.GUEST);
         users.add(user);
         users.remove(user.getUUID());
     }

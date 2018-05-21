@@ -6,9 +6,11 @@
 package de.gerolmed.lib.clan.utils;
 
 public enum ClanRank {
+    GUEST(-1, "§7Gast", false, false, false, false, false),
     USER(-1, "§aMitglied", false, false, false, false, false),
     MOD(-1, "§a§lModerator", false, false, false, true, false),
-    ADMIN(1, "§c§lClan Lord", true, true, true, true, true);
+    VICE_ADMIN(-1, "§cVize-Anführer", true, true, true, true, true),
+    ADMIN(4, "§c§lClan Lord", true, true, true, true, true);
 
 
     private int maxAmount;

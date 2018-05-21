@@ -52,7 +52,7 @@ public class MySQLConnectionUsers {
         if (isConnected()) {
             try {
                 PreparedStatement preparedStatement = getConnection().prepareStatement(
-                        "CREATE TABLE IF NOT EXISTS "+table+" (UUID VARCHAR(100), Clan VARCHAR(100), ClanRank VARCHAR(100))");
+                        "CREATE TABLE IF NOT EXISTS "+table+" (UUID VARCHAR(100), PlayerName VARCHAR(100), Clan VARCHAR(100), ClanRank VARCHAR(100))");
                 preparedStatement.executeUpdate();
                 preparedStatement.close();
                 System.out.println("[ClanSystem] MySQL Table created/loaded!");
@@ -86,6 +86,7 @@ public class MySQLConnectionUsers {
 
             while (result.next()) {
                 String uuidString = result.getString("UUID");
+                String nameString = result.getString("PlayerName");
                 String clanShort = result.getString("Clan");
                 String clanRankString = result.getString("ClanRank");
 
@@ -93,7 +94,7 @@ public class MySQLConnectionUsers {
                 try {
                     UUID uuid = UUID.fromString(uuidString);
                     Clan clan = clanManager.getClan(clanShort);
-                    ClanUser user = new ClanUser(uuid);
+                    ClanUser user = new ClanUser(uuid, nameString);
                     if(clan != null) {
                         clan.setUser(user);
                         ClanRank rank = ClanRank.findVal(clanRankString);
@@ -123,16 +124,19 @@ public class MySQLConnectionUsers {
 
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("INSERT INTO "+table+" (UUID, Clan, ClanRank) VALUES (?, ?, ?)");
+                    .prepareStatement("INSERT INTO "+table+" (UUID, Clan, ClanRank, PlayerName) VALUES (?, ?, ?, ?)");
 
             for(ClanUser clanUser : users) {
                 String uuidString = clanUser.getUUID().toString();
+                String namePlayer = clanUser.getNameString();
+
                 String clanShort = clanUser.getClan() != null ? clanUser.getClan().getShort() : null;
                 String clanRankString = clanUser.getRank() != null ? clanUser.getRank().toString() : null;
 
                 preparedStatement.setString(1, uuidString);
                 preparedStatement.setString(2, clanShort);
                 preparedStatement.setString(3, clanRankString);
+                preparedStatement.setString(4, namePlayer);
 
                 preparedStatement.addBatch();
             }

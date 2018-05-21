@@ -10,6 +10,7 @@ import de.gerolmed.bungee.clan.ClanManager;
 import de.gerolmed.bungee.clan.ConfigHolder;
 import de.gerolmed.lib.clan.Clan;
 import de.gerolmed.lib.clan.ClanUser;
+import de.gerolmed.lib.clan.ClanUserManager;
 import de.gerolmed.lib.clan.utils.ClanRank;
 
 import java.sql.*;
@@ -97,6 +98,9 @@ public class MySQLConnectionUsers {
                         clan.setUser(user);
                         ClanRank rank = ClanRank.findVal(clanRankString);
                         user.setRank(rank);
+                        ClanUserManager.getInstance().addUser(user);
+                        System.err.println("  -> Loaded ClanUser "+uuidString + " ("+clanShort+")");
+
                     }
                 }catch (Exception ex) {
                     System.err.println("Error loading ClanUser from database");

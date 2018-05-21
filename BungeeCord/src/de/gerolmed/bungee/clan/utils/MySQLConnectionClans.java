@@ -89,7 +89,10 @@ public class MySQLConnectionClans {
 
 
                 try {
-                    clans.add(new Clan(clanShort, clanName));
+                    Clan clan = new Clan(clanShort, clanName);
+                    clans.add(clan);
+                    System.err.println("  -> Loaded Clan "+clan.getName() + " ("+clan.getShort()+")");
+
                 }catch (Exception ex) {
                     System.err.println("Error loading Clan from database");
                     ex.printStackTrace();

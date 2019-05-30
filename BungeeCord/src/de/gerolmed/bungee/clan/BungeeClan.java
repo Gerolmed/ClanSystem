@@ -20,6 +20,7 @@ public class BungeeClan extends Plugin {
 
     private ClanManager clanManager;
     private ConfigHolder configHolder;
+    private MySQLConnectionUsers userSql;
 
     private static BungeeClan instance;
 
@@ -37,10 +38,25 @@ public class BungeeClan extends Plugin {
             ex.printStackTrace();
         }
 
-        clanManager = new ClanManager();
+        clanManager = new ClanManager(
+                ConfigHolder.Configs.CONFIG.getConfig().getString("clan.host"),
+                ConfigHolder.Configs.CONFIG.getConfig().getInt("clan.port"),
+                ConfigHolder.Configs.CONFIG.getConfig().getString("clan.database"),
+                ConfigHolder.Configs.CONFIG.getConfig().getString("clan.username"),
+                ConfigHolder.Configs.CONFIG.getConfig().getString("clan.password"),
+                ConfigHolder.Configs.CONFIG.getConfig().getString("clan.table")
+        );
         new ClanUserManager();
 
-        MySQLConnectionUsers userSql = new MySQLConnectionUsers();
+        userSql = new MySQLConnectionUsers(
+                ConfigHolder.Configs.CONFIG.getConfig().getString("user.host"),
+                ConfigHolder.Configs.CONFIG.getConfig().getInt("user.port"),
+                ConfigHolder.Configs.CONFIG.getConfig().getString("user.database"),
+                ConfigHolder.Configs.CONFIG.getConfig().getString("user.username"),
+                ConfigHolder.Configs.CONFIG.getConfig().getString("user.password"),
+                ConfigHolder.Configs.CONFIG.getConfig().getString("user.table")
+        );
+
         userSql.connect();
         ClanUserManager.getInstance().setAllUsers((ArrayList<ClanUser>) userSql.getAllUsers(clanManager));
         userSql.disconnect();
@@ -55,7 +71,6 @@ public class BungeeClan extends Plugin {
     public void onDisable() {
 
         clanManager.saveClans();
-        MySQLConnectionUsers userSql = new MySQLConnectionUsers();
         userSql.connect();
         userSql.setAllUsers(ClanUserManager.getInstance().getAllUsers());
         userSql.disconnect();

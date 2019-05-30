@@ -6,12 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="BungeeCord" />
         <module name="Spigot" />
+        <module name="ClanLibraries" />
+        <module name="BungeeCord" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="BungeeCord" target="1.8" />
+      <module name="ClanLibraries" target="1.8" />
       <module name="Spigot" target="1.8" />
     </bytecodeTargetLevel>
   </component>

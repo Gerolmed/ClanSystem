@@ -6,6 +6,7 @@
 
 package de.gerolmed.bungee.clan;
 
+import de.gerolmed.bungee.clan.utils.ClanBackend;
 import de.gerolmed.bungee.clan.utils.MySQLConnectionClans;
 import de.gerolmed.lib.clan.Clan;
 
@@ -15,9 +16,20 @@ public class ClanManager {
 
     private ArrayList<Clan> clans = new ArrayList<>();
 
+    private String host;
+    private int port;
+    private String database;
+    private String username;
+    private String password;
+    private String table;
 
-    public ClanManager() {
-        loadClans();
+    public ClanManager(String host, int port, String database, String username, String password, String table) {
+        this.host = host;
+        this.port = port;
+        this.database = database;
+        this.username = username;
+        this.password = password;
+        this.table = table;
     }
 
     public void addClan(Clan clan) {
@@ -30,17 +42,17 @@ public class ClanManager {
     }
 
     private void loadClans() {
-        MySQLConnectionClans clanSql = new MySQLConnectionClans();
-        clanSql.connect();
-        clans = (ArrayList<Clan>) clanSql.getAllClans();
-        clanSql.disconnect();
+        ClanBackend clanBackend = new MySQLConnectionClans(host, port, database, username, password, table);
+        clanBackend.connect();
+        clans = (ArrayList<Clan>) clanBackend.getAllClans();
+        clanBackend.disconnect();
     }
 
     public void saveClans() {
-        MySQLConnectionClans clanSql = new MySQLConnectionClans();
-        clanSql.connect();
-        clanSql.setAllClans(clans);
-        clanSql.disconnect();
+        ClanBackend clanBackend = new MySQLConnectionClans(host, port, database, username, password, table);
+        clanBackend.connect();
+        clanBackend.setAllClans(clans);
+        clanBackend.disconnect();
     }
 
     public Clan getClan(String clanShort) {

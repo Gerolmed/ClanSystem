@@ -42,12 +42,9 @@ public class JoinLeaveListener implements Listener {
     }
 
     private void sendUpdate(ProxiedPlayer player) {
-        ProxyServer.getInstance().getScheduler().schedule(BungeeClan.getInstance(), new Runnable() {
-            @Override
-            public void run() {
-                ClanUser user = ClanUserManager.getInstance().getUser(player.getUniqueId());
-                ClanCommand.sendUpdateToServer(user);
-            }
+        ProxyServer.getInstance().getScheduler().schedule(BungeeClan.getInstance(), () -> {
+            ClanUser user = ClanUserManager.getInstance().getUser(player.getUniqueId());
+            ClanCommand.sendUpdateToServer(user);
         }, 1, TimeUnit.SECONDS);
     }
 }

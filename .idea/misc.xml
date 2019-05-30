@@ -5,6 +5,7 @@
       <list>
         <option value="$PROJECT_DIR$/BungeeCord/pom.xml" />
         <option value="$PROJECT_DIR$/Spigot/pom.xml" />
+        <option value="$PROJECT_DIR$/ClanLibraries/pom.xml" />
       </list>
     </option>
   </component>

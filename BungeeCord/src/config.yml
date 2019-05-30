@@ -1,6 +1,18 @@
-MySQL:
-  username: username
-  password: password
-  database: clandatabase
+clan:
+  # Valid types are MYSQL and MONGODB
+  type: MYSQL
+  username: "username"
+  password: "password"
+  database: "clandatabase"
   port: 3306
-  host: localhost
+  host: "localhost"
+  table: "clans"
+user:
+  # Valid types are MYSQL and MONGODB
+  type: MYSQL
+  username: "username"
+  password: "password"
+  database: "clandatabase"
+  port: 3306
+  host: "localhost"
+  table: "clans"

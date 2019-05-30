@@ -6,37 +6,43 @@
 
 package de.gerolmed.bungee.clan.utils;
 
-import de.gerolmed.bungee.clan.BungeeClan;
-import de.gerolmed.bungee.clan.ClanManager;
 import de.gerolmed.bungee.clan.ConfigHolder;
 import de.gerolmed.lib.clan.Clan;
-import de.gerolmed.lib.clan.ClanUser;
-import de.gerolmed.lib.clan.utils.ClanRank;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-public class MySQLConnectionClans {
+public class MySQLConnectionClans implements ClanBackend {
 
-    private String host = ConfigHolder.Configs.CONFIG.getConfig().getString("MySQL.host");
-    private int port = ConfigHolder.Configs.CONFIG.getConfig().getInt("MySQL.port");
-    private String database = ConfigHolder.Configs.CONFIG.getConfig().getString("MySQL.database");
-    private String username = ConfigHolder.Configs.CONFIG.getConfig().getString("MySQL.username");
-    private String password = ConfigHolder.Configs.CONFIG.getConfig().getString("MySQL.password");
+    private String host;
+    private int port;
+    private String database;
+    private String username;
+    private String password;
+    private String table;
+
     private Connection connection;
 
-    private String table = "Clans";
 
-    public Connection getConnection() {
+    public MySQLConnectionClans(String host, int port, String database, String username, String password, String table) {
+        this.host = host;
+        this.port = port;
+        this.database = database;
+        this.username = username;
+        this.password = password;
+        this.table = table;
+    }
+
+    private Connection getConnection() {
         return connection;
     }
 
-    public boolean isConnected() {
+    private boolean isConnected() {
         return connection != null;
     }
 
+    @Override
     public void connect() {
         if (!isConnected()) {
             try {
@@ -62,6 +68,7 @@ public class MySQLConnectionClans {
         }
     }
 
+    @Override
     public void disconnect() {
         if (isConnected()) {
             try {
@@ -74,6 +81,7 @@ public class MySQLConnectionClans {
         }
     }
 
+    @Override
     public List<Clan> getAllClans() {
         System.out.println("Attempting to fetch Clans from Database");
 
@@ -108,6 +116,7 @@ public class MySQLConnectionClans {
         return clans;
     }
 
+    @Override
     public void setAllClans(List<Clan> clans) {
         System.out.println("Attempting to fetch ClanUsers from Database");
 

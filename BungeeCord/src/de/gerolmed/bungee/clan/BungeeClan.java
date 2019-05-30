@@ -1,5 +1,11 @@
 package de.gerolmed.bungee.clan;
 
+/*
+ * Copyright (c) 2018.
+ * This content has been created by Gerolmed! Sharing this content without permission is not allowed, as well
+ * as modifying any code parts and claiming ownership!
+ */
+
 import de.gerolmed.bungee.clan.utils.ClanCommand;
 import de.gerolmed.bungee.clan.utils.JoinLeaveListener;
 import de.gerolmed.bungee.clan.utils.MySQLConnectionClans;

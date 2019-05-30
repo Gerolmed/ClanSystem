@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2018.
- * This content has been created by Gerolmed! Sharing this content without permission is not aloud, as well as modifying any code parts and claiming ownership!
+ * This content has been created by Gerolmed! Sharing this content without permission is not allowed, as well
+ * as modifying any code parts and claiming ownership!
  */
 
 package de.gerolmed.bungee.clan.utils;
@@ -48,7 +49,6 @@ public class ClanCommand extends Command {
 
         if(user == null)
         {
-            //TODO: send Message Error occurred
             return;
         }
 
@@ -193,7 +193,7 @@ public class ClanCommand extends Command {
                         id = player.getUniqueId();
 
                     if(id == null) {
-                        sendMessage(proxiedPlayer, "§7[§9System§7] §cDieser Spieler war noch nie online");
+                        sendMessage(proxiedPlayer, "§7[§9System§7] §cDieser Spieler ist nicht online");
                         return;
                     }
 
@@ -232,6 +232,9 @@ public class ClanCommand extends Command {
 
                     if(player != null)
                         id = player.getUniqueId();
+
+                    if(id == null)
+                        id = ClanUserManager.getInstance().getIdFromName(name);
 
                     if(id == null) {
                         sendMessage(proxiedPlayer, "§7[§9System§7] §cDieser Spieler war noch nie online");
@@ -296,6 +299,9 @@ public class ClanCommand extends Command {
                     if(player != null)
                         id = player.getUniqueId();
 
+                    if(id == null)
+                        id = ClanUserManager.getInstance().getIdFromName(name);
+
                     if(id == null) {
                         sendMessage(proxiedPlayer, "§7[§9System§7] §cDieser Spieler war noch nie online");
                         return;
@@ -352,6 +358,9 @@ public class ClanCommand extends Command {
 
                     if(player != null)
                         id = player.getUniqueId();
+
+                    if(id == null)
+                        id = ClanUserManager.getInstance().getIdFromName(name);
 
                     if(id == null) {
                         sendMessage(proxiedPlayer, "§7[§9System§7] §cDieser Spieler war noch nie online");

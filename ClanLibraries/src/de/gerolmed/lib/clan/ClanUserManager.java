@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2018.
- * This content has been created by Gerolmed! Sharing this content without permission is not aloud, as well as modifying any code parts and claiming ownership!
+ * This content has been created by Gerolmed! Sharing this content without permission is not allowed, as well
+ * as modifying any code parts and claiming ownership!
  */
 
 package de.gerolmed.lib.clan;
@@ -27,6 +28,15 @@ public class ClanUserManager {
     public ClanUserManager() {
         instance = this;
         users = new ArrayList<>();
+    }
+
+    public UUID getIdFromName(String name) {
+
+        for(ClanUser user : users)
+        if(user.getNameString().equalsIgnoreCase(name))
+            return user.getUUID();
+        return null;
+
     }
 
     public void addUser(ClanUser user) {

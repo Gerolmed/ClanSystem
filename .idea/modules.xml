@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BungeeCord/BungeeCord.iml" filepath="$PROJECT_DIR$/BungeeCord/BungeeCord.iml" />
       <module fileurl="file://$PROJECT_DIR$/ClanLibraries/ClanLibraries.iml" filepath="$PROJECT_DIR$/ClanLibraries/ClanLibraries.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ClanSystem.iml" filepath="$PROJECT_DIR$/ClanSystem.iml" />
       <module fileurl="file://$PROJECT_DIR$/Spigot/Spigot.iml" filepath="$PROJECT_DIR$/Spigot/Spigot.iml" />
     </modules>
   </component>

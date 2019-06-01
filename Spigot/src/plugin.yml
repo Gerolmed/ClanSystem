@@ -1,3 +1,4 @@
 main: de.gerolmed.spigot.clan.SpigotClan
 version: 1.0
 name: SpigotClan
+depend: [Vault]
